@@ -55,7 +55,13 @@ dsh plugin --profile web add /path/to/dsh-search-endpoint-guard
 
 # 或发布到 npm 后
 dsh plugin --profile web add dsh-search-endpoint-guard
+
+# 或从 GitHub 安装
+dsh plugin --profile web add kanghelyu/dsh-search-endpoint-guard
 ```
+
+> 源码仓库：<https://github.com/kanghelyu/dsh-search-endpoint-guard>
+> Repository: <https://github.com/kanghelyu/dsh-search-endpoint-guard>
 
 > `dsh plugin` 需要 `pnpm` 在 PATH 上；安装后**重启 `dsh web`** 生效。
 > 手动安装：把本包放进 `~/.dsh/profiles/<name>/node_modules/` 并把 `dsh-search-endpoint-guard` 加入该 profile `package.json` 的 `dsh.profile.bundles` 列表。
