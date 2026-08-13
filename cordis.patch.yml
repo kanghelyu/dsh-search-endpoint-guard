@@ -1,0 +1,26 @@
+# dsh-search-endpoint-guard bundle patch: mounts the search-endpoint-guard
+# plugin into the host composition of a dsh profile. The plugin watches the
+# effective endpoints of the chat LLM adapter (llm-deepseek) and the web_search
+# provider (web-search-deepseek), warns when web_search still targets the
+# official api.deepseek.com endpoint while the chat LLM runs on a non-official
+# (proxy/gateway) provider, and can auto-align or live-probe the endpoint.
+# The model-facing tool `search_endpoint_check` exposes the same diagnostics
+# to every session.
+#
+# Install: `dsh plugin --profile <name> add <this package>` (npm or a local
+# path). The `dsh plugin` command pnpm-installs the package into the profile
+# and reconciles it into the profile's `dsh.profile.bundles` layer list.
+- insert:
+    - id: search-endpoint-guard
+      name: dsh-search-endpoint-guard
+      config:
+        # Align web-search-deepseek.baseURL to the chat LLM endpoint at startup
+        # when they are misaligned. Off by default: alignment assumes the chat
+        # endpoint speaks the Anthropic-compatible Messages API with the
+        # native web_search_20250305 server tool.
+        autoAlign: false
+        # Run the endpoint check once at startup and log the verdict.
+        checkOnStartup: true
+        # Timeout (ms) for one live probe request (search_endpoint_check with
+        # probe: true).
+        probeTimeoutMs: 30000
