@@ -15,6 +15,17 @@
     "README.md",
     "LICENSE"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanghelyu/dsh-search-endpoint-guard.git"
+  },
+  "homepage": "https://github.com/kanghelyu/dsh-search-endpoint-guard",
+  "bugs": {
+    "url": "https://github.com/kanghelyu/dsh-search-endpoint-guard/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "license": "MIT",
   "dsh": {
     "bundle": {
