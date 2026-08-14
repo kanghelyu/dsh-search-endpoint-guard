@@ -1,6 +1,6 @@
 {
   "name": "dsh-search-endpoint-guard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Diagnose and align the web_search endpoint with your LLM provider endpoint, for users running DeepSeek Harness on a non-official (proxy/gateway) provider. / 诊断并对齐 web_search 端点，帮助使用非官方（代理/网关）提供商的 DeepSeek Harness 用户。",
   "type": "module",
   "main": "lib/index.js",
@@ -31,12 +31,5 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
-  },
-  "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.1-rc.1",
-    "@deepseek-ai/dsh-credentials": "^0.0.1-rc.1",
-    "@deepseek-ai/dsh-launch-environment": "^0.0.1-rc.1",
-    "@deepseek-ai/dsh-tools": "^0.0.1-rc.1",
-    "@deepseek-ai/schemastery": "^3.18.1-rc.1"
   }
 }

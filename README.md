@@ -10,10 +10,10 @@ aggregator such as opencode.ai, one-api, new-api, etc.).
 
 一个 DeepSeek Harness 插件：当你的对话 LLM 运行在**非官方**提供商（代理 / 网关 / 聚合器，如 opencode.ai、one-api、new-api 等）上、而 `web_search` 仍指向**官方** DeepSeek API 时，负责诊断、告警，并可自动修复。
 ```bash
-dsh plugin --profile web add dsh-search-endpoint-guard
+dsh plugin --profile web add -w dsh-search-endpoint-guard
 ```
 ```bash
-npm install -g pnpm && dsh plugin --profile web add dsh-search-endpoint-guard
+npm install -g pnpm && dsh plugin --profile web add -w dsh-search-endpoint-guard
 ```
 ---
 
@@ -55,18 +55,22 @@ Chat keeps working (it goes through the gateway), which makes this bug look like
 ## 3. Install · 安装
 
 ```bash
-# 本地路径安装（推荐先试用）
-dsh plugin --profile web add /path/to/dsh-search-endpoint-guard
+# 从 npm 安装（推荐；需要 pnpm）
+npm install -g pnpm
+dsh plugin --profile web add -w dsh-search-endpoint-guard
 
-# 或发布到 npm 后
-dsh plugin --profile web add dsh-search-endpoint-guard
-
-# 或从 GitHub 安装
-dsh plugin --profile web add kanghelyu/dsh-search-endpoint-guard
+# 本地路径安装（开发时试用）
+dsh plugin --profile web add -w /path/to/dsh-search-endpoint-guard
 ```
 
-> 源码仓库：<https://github.com/kanghelyu/dsh-search-endpoint-guard>
-> Repository: <https://github.com/kanghelyu/dsh-search-endpoint-guard>
+- `--profile <name>` 换成你自己的 profile 名（GUI 默认是 `web`）；装完**重启 `dsh web`** 生效。
+- `-w` 是 pnpm 的 workspace-root 标志（profile 目录本身是 pnpm workspace，缺少会报 `ERR_PNPM_ADDING_TO_ROOT`）。
+- 本包**零 npm 依赖**（无 `dependencies`/`peerDependencies`）：运行所需的 `@deepseek-ai/*` 由 DSH 安装本身提供（`$DSH_HOME/profiles/node_modules` 的 flat fallback），所以 pnpm 安装时不会去解析任何私有包。
+- 源码仓库 / Repository：<https://github.com/kanghelyu/dsh-search-endpoint-guard>
+
+### 手动安装（不需要 pnpm）
+
+把本包复制到 `~/.dsh/profiles/<name>/node_modules/dsh-search-endpoint-guard/`，然后在 profile 的 `package.json` 的 `dsh.profile.bundles` 列表中加入 `"dsh-search-endpoint-guard"`，重启生效。
 
 > `dsh plugin` 需要 `pnpm` 在 PATH 上；安装后**重启 `dsh web`** 生效。
 > 手动安装：把本包放进 `~/.dsh/profiles/<name>/node_modules/` 并把 `dsh-search-endpoint-guard` 加入该 profile `package.json` 的 `dsh.profile.bundles` 列表。
