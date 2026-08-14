@@ -9,8 +9,11 @@ while your chat LLM runs on a **non-official** provider (a proxy, gateway, or
 aggregator such as opencode.ai, one-api, new-api, etc.).
 
 一个 DeepSeek Harness 插件：当你的对话 LLM 运行在**非官方**提供商（代理 / 网关 / 聚合器，如 opencode.ai、one-api、new-api 等）上、而 `web_search` 仍指向**官方** DeepSeek API 时，负责诊断、告警，并可自动修复。
+```bash
+dsh plugin --profile web add dsh-search-endpoint-guard
 ```
-dsh plugin --profile <name> add dsh-search-endpoint-guard
+```bash
+npm install -g pnpm && dsh plugin --profile web add dsh-search-endpoint-guard
 ```
 ---
 
